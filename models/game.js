@@ -1,8 +1,8 @@
 class Game {
-  constructor(id, title, color) {
+  constructor(id, title, player) {
     this.id = id;
     this.title = title;
-    this.color = color;
+    this.player = player;
   }
 }
 

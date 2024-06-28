@@ -4,7 +4,7 @@ import { GAMES } from '../data/data'
 
 const renderGame = (itemData) => {
     return <ButtonTile title={itemData.item.title} 
-    color={itemData.item.color}/>
+    player={itemData.item.player}/>
 }
 
 const GameSeletionScreen = () => {

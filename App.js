@@ -1,18 +1,27 @@
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet, ImageBackground } from 'react-native'
+import { StyleSheet, ImageBackground } from 'react-native'
 import GameSeletionScreen from './screens/GameSeletionScreen'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import GameOverviewScreen from './screens/GameScreen'
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
+
     return (
         <>
             <StatusBar style='light' />
-            <ImageBackground source={require('./assets/images/bg.jpg')}
-            resizeMode='cover'
-            style={styles.root}
-            imageStyle={styles.backgroundImage}>
-                <View style={styles.container}>
-                    <GameSeletionScreen />
-                </View>
+                <ImageBackground source={require('./assets/images/bg1.jpg')}
+                resizeMode='cover'
+                style={styles.root}
+                imageStyle={styles.backgroundImage}>
+                <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name="Select Game" component={GameSeletionScreen}/>
+                    <Stack.Screen name="Game Overview" component={GameOverviewScreen}/>
+                </Stack.Navigator>
+            </NavigationContainer>
             </ImageBackground>
         </>
     )
@@ -25,10 +34,4 @@ const styles = StyleSheet.create({
     backgroundImage: {
         opacity: 0.6,
     },
-    container: {
-        flex: 1,
-        marginTop: 40,
-        justifyContent: 'center',
-
-    }
 })

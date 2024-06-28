@@ -1,11 +1,15 @@
-import { Pressable, View, Text, StyleSheet, Platform } from 'react-native'
+import { Pressable, View, StyleSheet, Platform } from 'react-native'
+import BodyText from '../components/ui/BodyText'
+import TitleText from './ui/TitleText'
+import ColorPalette from '../constants/ColorPalette'
 
-const ButtonTile = ({title, color}) => {
+const ButtonTile = ({title, player}) => {
   return (
     <View style={styles.outterContainer}>
         <Pressable android_ripple={{color: '#ccc'}} style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null,]}>
-            <View style={[styles.innerContainer, { backgroundColor: color }]}>
-                <Text style={styles.title}>{title}</Text>
+            <View style={[styles.innerContainer]}>
+                <TitleText>{title}</TitleText>
+                <BodyText>{player}</BodyText>
             </View>
         </Pressable>
     </View>
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
   outterContainer: {
     flex: 1,
     margin: 16,
-    height: 150,
+    height: 200,
     borderRadius: 8,
     elevation: 4,
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
@@ -35,18 +39,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonPressed: {
-    opacity: 0.5,
+    opacity: 0.8,
   },
   innerContainer: {
     flex: 1,
     padding: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
     borderRadius: 8,
+    backgroundColor: ColorPalette.bglight,
   },
-
-  title: {
-    fontWeight: 'bold',
-    fontSize: 18,
-  }
 })

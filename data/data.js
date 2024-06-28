@@ -5,8 +5,8 @@ import Event from '../models/event'
 import Player from '../models/player'
 
 export const GAMES = [
-  new Game('g1', 'Kuro e Sarisa', '#00c6d7'),
-  new Game('g2', 'M B L J', '#d738f3'),
+  new Game('g1', 'First Game', 'Matheus e Brunna'),
+  new Game('g2', 'Bouldering Bros', 'Matheus, Brunna, Lukas, Johanna'),
 ]
 
 export const SCENARIOS = [
