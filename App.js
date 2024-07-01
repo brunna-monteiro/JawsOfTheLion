@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, ImageBackground } from 'react-native'
-import GameSeletionScreen from './screens/GameSeletionScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import OpenScreen from './screens/OpenScreen'
+import NewGameScreen from './screens/NewGameScreen'
+import GameSeletionScreen from './screens/GameSeletionScreen'
 import GameOverviewScreen from './screens/GameScreen'
 
 const Stack = createNativeStackNavigator()
@@ -18,6 +20,8 @@ export default function App() {
                 imageStyle={styles.backgroundImage}>
                 <NavigationContainer>
                 <Stack.Navigator>
+                    <Stack.Screen name=" " component={OpenScreen}/>
+                    <Stack.Screen name="New Game" component={NewGameScreen}/>
                     <Stack.Screen name="Select Game" component={GameSeletionScreen}/>
                     <Stack.Screen name="Game Overview" component={GameOverviewScreen}/>
                 </Stack.Navigator>

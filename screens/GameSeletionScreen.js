@@ -2,18 +2,27 @@ import { FlatList } from 'react-native'
 import ButtonTile from '../components/ButtonTile'
 import { GAMES } from '../data/data'
 
-const renderGame = (itemData) => {
-    return <ButtonTile title={itemData.item.title} 
-    player={itemData.item.player}/>
-}
+const GameSeletionScreen = ({navigation}) => {
 
-const GameSeletionScreen = () => {
+  const renderGame = (itemData) => {
+    function pressHandler() {
+      navigation.navigate("Game Overview", {
+        gameIds: itemData.item.id,
+      })
+    }
+  
+  
+      return <ButtonTile title={itemData.item.title} 
+      player={itemData.item.player}
+      onPress={pressHandler}/>
+  }
+
   return (
     <FlatList data={GAMES} 
     keyExtractor={(item) => item.id} 
     renderItem={renderGame}
     numColumns={1}
-      />
+    />
   )
 }
 

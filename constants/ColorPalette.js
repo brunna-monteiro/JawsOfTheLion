@@ -9,6 +9,9 @@ const ColorPalette = {
     mainFont: '#fbd13a',
     textFont:  '#191a07',
     titleFont: '#ffffff',
+
+    androidRipple:'#cddbe8',
+    OSShadow: '#140a06',
 }
 
 export default ColorPalette

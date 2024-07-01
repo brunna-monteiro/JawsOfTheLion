@@ -3,10 +3,14 @@ import BodyText from '../components/ui/BodyText'
 import TitleText from './ui/TitleText'
 import ColorPalette from '../constants/ColorPalette'
 
-const ButtonTile = ({title, player}) => {
+const ButtonTile = ({title, player, onPress}) => {
   return (
     <View style={styles.outterContainer}>
-        <Pressable android_ripple={{color: '#ccc'}} style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null,]}>
+        <Pressable android_ripple={{color: ColorPalette.androidRipple}} 
+        style={({ pressed }) => [
+          styles.button, pressed ? styles.buttonPressed : null,]}
+          onPress={onPress}
+          >
             <View style={[styles.innerContainer]}>
                 <TitleText>{title}</TitleText>
                 <BodyText>{player}</BodyText>
@@ -28,8 +32,8 @@ const styles = StyleSheet.create({
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
 
     // ioS shadow
-    backgroundColor: 'white',
-    shadowColor: 'black',
+    backgroundColor: ColorPalette.bglight,
+    shadowColor: ColorPalette.OSShadow,
     shadowOpacity: 0.25,
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 8,

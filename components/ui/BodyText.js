@@ -16,7 +16,7 @@ export default BodyText
 const styles = StyleSheet.create({
     text: {
       fontSize: 20,
-      fontWeight: '700',
+      fontWeight: '400',
       color: ColorPalette.textFont,
       textAlign: 'center',
     },
