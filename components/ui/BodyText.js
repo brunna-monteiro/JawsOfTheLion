@@ -4,7 +4,7 @@ import ColorPalette from '../../constants/ColorPalette'
 const BodyText = ({children, style}) => {
 
   const {width, height} = useWindowDimensions()
-  const marginText = height < 400 ? 0 : '5%'
+  const marginText = height < 400 ? 0 : 0
 
   return (
     <Text style= {[styles.text, style, {margin: marginText}]}>{children}</Text>

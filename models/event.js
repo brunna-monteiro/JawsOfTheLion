@@ -2,11 +2,11 @@ class Event {
     constructor(
       id,
       gameIds,
-      complete,
+      completed,
     ) {
       this.id = id
       this.gameIds = gameIds
-      this.complete = complete
+      this.completed = completed
     }
   }
   

@@ -50,5 +50,6 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 8,
     backgroundColor: ColorPalette.bglight,
+    justifyContent: 'space-evenly'
   },
 })

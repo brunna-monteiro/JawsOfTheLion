@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
 
     buttonInnerContainer: {
-        backgroundColor: ColorPalette.bgsecondary,
+        backgroundColor: ColorPalette.primary,
         paddingVertical: 48,
         alignItems: 'center',
         borderWidth: 1,
