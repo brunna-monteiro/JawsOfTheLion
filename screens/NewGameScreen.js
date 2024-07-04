@@ -1,8 +1,8 @@
-
+import { Text, StyleSheet } from 'react-native'
 
 const NewGameScreen = () => {
   return (
-    <div>NewGameScreen</div>
+    <Text>This is a new game window</Text>
   )
 }
 

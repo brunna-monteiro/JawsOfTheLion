@@ -1,54 +1,42 @@
-import { View, FlatList, StyleSheet } from 'react-native'
-import { SCENARIOS, ITEMS, EVENTS, PLAYERS} from '../data/data'
+import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native'
+import { SCENARIOS, ITEMS, EVENTS, PLAYERS, GAMES} from '../data/data'
+import PrimaryButton from '../components/ui/PrimaryButton'
+import ButtonTile from '../components/ButtonTile'
 import ColorPalette from '../constants/ColorPalette'
 import BodyText from '../components/ui/BodyText'
 import ScenarioItem from '../components/ScenarioItem'
 import ItemItem from '../components/ItemItem'
 import EventItem from '../components/EventItem'
 import PlayerItem from '../components/PlayerItem'
-// import { useRoute } from '@react-navigation/native'
 
-const GameOverviewScreen = ({ route }) => {
-  // const route = useRoute()
-  // route.params.EVENTS.gameIds
-  const gId = route.params.gameIds
 
-  const displayedScenarios = SCENARIOS.filter((scenario) => {
-    return scenario.gameIds.indexOf(gId) >= 0
-  })
+const GameOverviewScreen = ({ navigation, route }) => {
 
-  function renderScenario(itemData) {
-    return <ScenarioItem title={itemData.item.title} 
-    goal={itemData.item.goal}/>
-  }
-
-  const displayedItems = ITEMS.filter((item) => {
-    return item.gameIds.indexOf(gId) >= 0
-  })
-
-  function renderItem(itemData) {
-    return <ItemItem title={itemData.item.title} 
-    acquired={itemData.item.acquired}
-    availability={itemData.item.availability}/>
-  }
-
-  const displayedEvents = EVENTS.filter((item) => {
-    return item.gameIds.indexOf(gId) >= 0
-  })
-
-  function renderEvent(itemData) {
-    return <EventItem id={itemData.item.id}/>
-  }
-
-  const displayedPlayers = PLAYERS.filter((item) => {
-    return item.gameIds.indexOf(gId) >= 0
-  })
-
-    function renderPlayer(itemData) {
-      return <PlayerItem charcterName={itemData.item.charcterName}
-      playerName={itemData.item.playerName} 
-      role={itemData.item.role}/>
+  const scenarioContainer = (itemData) => {
+    function scenarioHandler() {
+      navigation.navigate("Completed Scenarios", {
+        gameIds: itemData.item.id,
+      })
     }
+      return (
+        <PrimaryButton 
+        onPress={scenarioHandler}>
+          completed scenarios</PrimaryButton>
+      )
+  }
+
+
+
+  // const gId = route.params.gameIds
+
+  // const displayedEvents = EVENTS.filter((item) => {
+  //   return item.gameIds.indexOf(gId) >= 0
+  // })
+
+  // function renderEvent(itemData) {
+  //   return <EventItem id={itemData.item.id}/>
+  // }
+
 
   return (
     <>
@@ -56,36 +44,33 @@ const GameOverviewScreen = ({ route }) => {
       
       <View style={styles.container}>
         <BodyText>Scenarios</BodyText>
-        <FlatList 
-        data={displayedScenarios} 
-        keyExtractor={(item) => item.id} 
-        renderItem={renderScenario}/>
+        <Pressable>{scenarioContainer}</Pressable>
       </View>
         
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <BodyText>Items</BodyText> 
         <FlatList 
         data={displayedItems} 
         keyExtractor={(item) => item.id} 
         renderItem={renderItem}/>
-      </View>
+      </View> */}
 
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
       <BodyText>City Events</BodyText> 
         <FlatList 
         data={displayedEvents} 
         keyExtractor={(item) => item.id} 
         renderItem={renderEvent}
         numColumns={6}/>
-      </View>
+      </View> */}
 
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <BodyText>Players</BodyText> 
         <FlatList 
         data={displayedPlayers} 
         keyExtractor={(item) => item.id} 
         renderItem={renderPlayer}/>
-      </View>
+      </View> */}
     </View>
     </>
   )

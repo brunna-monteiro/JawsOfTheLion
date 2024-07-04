@@ -28,6 +28,15 @@ export const SCENARIOS = [
       'Kill all enemies'
     ]
   ),
+  new Scenario(
+    's3',
+    [],
+    'Teste scenario',
+    'https://tabletopbellhop.com/wp-content/uploads/2020/08/Jaws-of-the-Lion-Scenario-2.jpg',
+    [
+      'Mata geral'
+    ]
+  ),
 ]
 
 export const ITEMS = [
@@ -64,8 +73,78 @@ export const EVENTS = [
     true
   ),
   new Event(
+    '2',
+    [],
+    false
+  ),
+  new Event(
+    '3',
+    ['g2'],
+    true
+  ),
+  new Event(
+    '4',
+    [],
+    false
+  ),
+  new Event(
+    '5',
+    [],
+    false
+  ),
+  new Event(
+    '6',
+    ['g2'],
+    true
+  ),
+  new Event(
     '7',
     ['g1'],
+    true
+  ),
+  new Event(
+    '8',
+    ['g2'],
+    true
+  ),
+  new Event(
+    '9',
+    [],
+    false
+  ),
+  new Event(
+    '10',
+    ['g2'],
+    true
+  ),
+  new Event(
+    '11',
+    ['g2'],
+    true
+  ),
+  new Event(
+    '12',
+    ['g2'],
+    true
+  ),
+  new Event(
+    '13',
+    [],
+    false
+  ),
+  new Event(
+    '14',
+    [],
+    false
+  ),
+  new Event(
+    '15',
+    ['g2'],
+    true
+  ),
+  new Event(
+    '16',
+    ['g2'],
     true
   ),
   new Event(
@@ -79,50 +158,20 @@ export const EVENTS = [
     true
   ),
   new Event(
+    '19',
+    [],
+    false
+  ),
+  new Event(
+    '20',
+    [],
+    false
+  ),
+  new Event(
     '21',
     ['g2'],
     true
   ),
-  new Event(
-    '3',
-    ['g2'],
-    true
-  ),
-  new Event(
-    '15',
-    ['g2'],
-    true
-  ),
-  new Event(
-    '12',
-    ['g2'],
-    true
-  ),
-  new Event(
-    '8',
-    ['g2'],
-    true
-  ),
-  new Event(
-    '6',
-    ['g2'],
-    true
-  ),
-  new Event(
-    '11',
-    ['g2'],
-    true
-  ),
-  new Event(
-    '16',
-    ['g2'],
-    true
-  ),  new Event(
-    '10',
-    ['g2'],
-    true
-  ),
-
 ]
 
 export const PLAYERS = [
