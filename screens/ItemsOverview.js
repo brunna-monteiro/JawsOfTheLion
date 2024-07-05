@@ -14,17 +14,17 @@ const ItemsOverview = ({ route }) => {
     return (
       <ItemItem
       imageUrl={itemData.item.imageUrl}
-      title={itemData.item.title} x
-      acquired={itemData.item.acquired}
-      availability={itemData.item.availability}/>
+      title={itemData.item.title}/>
   )}
   return (
-    <View style={styles.container}>
-      <BodyText>Items</BodyText> 
-      <FlatList 
-      data={displayedItems} 
-      keyExtractor={(item) => item.id} 
-      renderItem={renderItem}/>
+    <View style={styles.outterContainer}>
+      <View style={styles.container}>
+        <BodyText>Items</BodyText> 
+        <FlatList 
+        data={displayedItems} 
+        keyExtractor={(item) => item.id} 
+        renderItem={renderItem}/>
+      </View>
     </View>
   )
 }
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 16,
     borderRadius: 8,
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
   },
 
   container: {

@@ -1,13 +1,11 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import ColorPalette from '../constants/ColorPalette'
 
-const ItemItem = ({ imageUrl, title, acquired, availability }) => {
+const ItemItem = ({ imageUrl, title }) => {
   return (
     <View style={styles.container}>
-      <Image souce={{uri: {imageUrl}}}/>
+      <Image source={{uri: imageUrl.imageUrl}}/>
       <Text style={styles.textItem}>{title}</Text>
-      <Text style={styles.textItem}>Acquired: {acquired}</Text>
-      <Text style={styles.textItem}>Available: {availability}</Text>
     </View>
   )
 }

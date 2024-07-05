@@ -24,7 +24,7 @@ export default function App() {
                     <Stack.Screen name="Select Game" component={GameSeletionScreen}/>
                     <Stack.Screen name="Game Overview" component={GameOverviewScreen}/>
                     <Stack.Screen name="Completed Scenarios" component={ScenariosOverview}/>
-                    <Stack.Screen name="Acquired Items" component={ItemsOverview}/>
+                    <Stack.Screen name="Items" component={ItemsOverview}/>
                     <Stack.Screen name="Players" component={PlayersOverview}/>
                 </Stack.Navigator>
             </NavigationContainer>

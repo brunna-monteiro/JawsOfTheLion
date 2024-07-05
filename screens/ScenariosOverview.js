@@ -1,7 +1,6 @@
 import { View, FlatList, StyleSheet } from 'react-native'
 import { SCENARIOS } from '../data/data'
 import ColorPalette from '../constants/ColorPalette'
-import BodyText from '../components/ui/BodyText'
 import ScenarioItem from '../components/ScenarioItem'
 
 const ScenariosOverview = ({ route }) => {
@@ -11,14 +10,14 @@ const ScenariosOverview = ({ route }) => {
   })
 
   function renderScenario(itemData) {
-    return <ScenarioItem title={itemData.item.title} 
+    return <ScenarioItem 
+    title={itemData.item.title} 
     goal={itemData.item.goal}/>
   }
   return (
     <>
      <View style={styles.outterContainer}>
         <View style={styles.container}>
-          <BodyText>Scenarios</BodyText>
           <FlatList 
           data={displayedScenarios} 
           keyExtractor={(item) => item.id} 
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 16,
     borderRadius: 8,
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
   },
 
   container: {

@@ -1,41 +1,38 @@
-import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native'
-import { SCENARIOS, ITEMS, EVENTS, PLAYERS, GAMES} from '../data/data'
-import PrimaryButton from '../components/ui/PrimaryButton'
-import ButtonTile from '../components/ButtonTile'
+import { View, FlatList, Pressable, StyleSheet } from 'react-native'
+import { EVENTS } from '../data/data'
+import SecondaryButton from '../components/ui/SecondaryButton'
 import ColorPalette from '../constants/ColorPalette'
 import BodyText from '../components/ui/BodyText'
-import ScenarioItem from '../components/ScenarioItem'
-import ItemItem from '../components/ItemItem'
 import EventItem from '../components/EventItem'
 import PlayerItem from '../components/PlayerItem'
 
 
 const GameOverviewScreen = ({ navigation, route }) => {
+  const gId = route.params.gameIds
 
-  const scenarioContainer = (itemData) => {
-    function scenarioHandler() {
-      navigation.navigate("Completed Scenarios", {
-        gameIds: itemData.item.id,
-      })
+  const scenarioContainer = () => {
+      navigation.navigate("Completed Scenarios", {gameIds: gId})
     }
-      return (
-        <PrimaryButton 
-        onPress={scenarioHandler}>
-          completed scenarios</PrimaryButton>
-      )
+
+
+  const displayedEvents = EVENTS.filter((item) => {
+    return item.gameIds.indexOf(gId) >= 0
+  })
+
+  function renderEvent(itemData) {
+    return <EventItem id={itemData.item.id}/>
   }
 
+  const itemContainer = () => {
+    navigation.navigate("Items", {gameIds: gId})
+  }
 
+  const playersName = PLAYERS.filter((item) => {
+    return item.gameIds.indexOf(gId) >= 0})
 
-  // const gId = route.params.gameIds
-
-  // const displayedEvents = EVENTS.filter((item) => {
-  //   return item.gameIds.indexOf(gId) >= 0
-  // })
-
-  // function renderEvent(itemData) {
-  //   return <EventItem id={itemData.item.id}/>
-  // }
+  const playerContainer = () => {
+    navigation.navigate("Players", {gameIds: gId})
+  }
 
 
   return (
@@ -43,34 +40,34 @@ const GameOverviewScreen = ({ navigation, route }) => {
     <View style={styles.outterContainer}>
       
       <View style={styles.container}>
-        <BodyText>Scenarios</BodyText>
-        <Pressable>{scenarioContainer}</Pressable>
+        <BodyText>Available Scenarios</BodyText>
+        <SecondaryButton onPress={scenarioContainer}>see completed scenarios</SecondaryButton>
       </View>
         
-      {/* <View style={styles.container}>
-        <BodyText>Items</BodyText> 
-        <FlatList 
-        data={displayedItems} 
-        keyExtractor={(item) => item.id} 
-        renderItem={renderItem}/>
-      </View> */}
 
-      {/* <View style={styles.container}>
-      <BodyText>City Events</BodyText> 
+      <View style={styles.container}>
+      <BodyText>Completed City Events</BodyText> 
         <FlatList 
         data={displayedEvents} 
         keyExtractor={(item) => item.id} 
         renderItem={renderEvent}
         numColumns={6}/>
-      </View> */}
+      </View>
 
-      {/* <View style={styles.container}>
-        <BodyText>Players</BodyText> 
+      <View style={styles.container}>
+        <BodyText>Available Items</BodyText>
+        <SecondaryButton onPress={itemContainer}>Acquired Items</SecondaryButton>
+      </View>
+
+      <View style={styles.container}>
+        <BodyText>Players</BodyText>
         <FlatList 
-        data={displayedPlayers} 
+        data={playersName} 
         keyExtractor={(item) => item.id} 
-        renderItem={renderPlayer}/>
-      </View> */}
+        renderItem={item.playerName}/>
+        <SecondaryButton onPress={playerContainer}>detailed description</SecondaryButton>
+      </View>
+
     </View>
     </>
   )

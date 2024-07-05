@@ -30,7 +30,7 @@ export const SCENARIOS = [
   ),
   new Scenario(
     's3',
-    [],
+    ['g2'],
     'Teste scenario',
     'https://tabletopbellhop.com/wp-content/uploads/2020/08/Jaws-of-the-Lion-Scenario-2.jpg',
     [
