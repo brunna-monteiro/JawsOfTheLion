@@ -13,7 +13,7 @@ export default EventItem
 
 const styles = StyleSheet.create({
     container: {
-        borderColor: ColorPalette.androidRipple,
+        borderColor: 'black',
         borderWidth: 1,
         borderRadius: 8,
         padding: 20,

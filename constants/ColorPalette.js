@@ -10,8 +10,10 @@ const ColorPalette = {
     mainFont: '#fbd13a',
     textFont:  '#191a07',
     titleFont: '#ffffff',
+    propsFont: '#a1a1a1',
 
-    androidRipple:'#cddbe8',
+    lightRipple:'#bcd2e7',
+    darkRipple: '#586068',
     OSShadow: '#140a06',
 }
 

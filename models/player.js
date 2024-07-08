@@ -2,13 +2,13 @@ class Player {
     constructor(
       id,
       gameIds,
-      charcterName,
+      characterName,
       playerName,
       role,
     ) {
       this.id = id
       this.gameIds = gameIds
-      this.charcterName = charcterName
+      this.characterName = characterName
       this.playerName = playerName
       this.role = role
     }

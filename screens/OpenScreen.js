@@ -4,11 +4,11 @@ import MainText from '../components/ui/MainText'
 
 const OpenScreen = ({navigation}) => {
     function pressSelectHandler() {
-        navigation.navigate("Select Game")
+        navigation.navigate("GameSelection")
     }
 
     function pressNewGameHandler() {
-        navigation.navigate("New Game")
+        navigation.navigate("NewGame")
     }
     
     return (

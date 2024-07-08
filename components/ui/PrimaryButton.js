@@ -13,7 +13,7 @@ const PrimaryButton = ({ children, onPress }) => {
         onPress={onPress} 
         style={[styles.buttonInnerContainer, 
         {paddingHorizontal: paddingHorizontal}]} 
-        android_ripple={{color: ColorPalette.androidRipple}}>
+        android_ripple={{color: ColorPalette.lightRipple}}>
             <MainText>{children}</MainText>
         </Pressable>
     </View>

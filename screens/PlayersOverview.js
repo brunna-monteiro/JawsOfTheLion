@@ -11,14 +11,16 @@ const PlayersOverview = ({ route }) => {
   })
 
   function renderPlayer(itemData) {
-    return <PlayerItem charcterName={itemData.item.charcterName}
-    playerName={itemData.item.playerName} 
-    role={itemData.item.role}/>
+    const playerProps = {
+      characterName: itemData.item.characterName,
+      playerName: itemData.item.playerName,
+      role: itemData.item.role,
+    }
+    return <PlayerItem {...playerProps}/>
   }
 
   return (
     <View style={styles.container}>
-      <BodyText>Players</BodyText> 
       <FlatList 
       data={displayedPlayers} 
       keyExtractor={(item) => item.id} 
@@ -30,17 +32,10 @@ const PlayersOverview = ({ route }) => {
 export default PlayersOverview
 
 const styles = StyleSheet.create({
-  outterContainer: {
-    flex: 1,
-    margin: 16,
-    borderRadius: 8,
-    justifyContent: 'space-around',
-  },
-
   container: {
     padding: 16,
+    margin: 20,
     backgroundColor: ColorPalette.bglight,
-    alignItems: 'stretch',
 
     borderWidth: 1,
     borderRadius: 8,

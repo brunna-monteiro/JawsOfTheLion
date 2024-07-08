@@ -6,7 +6,7 @@ import ColorPalette from '../constants/ColorPalette'
 const ButtonTile = ({title, player, onPress}) => {
   return (
     <View style={styles.outterContainer}>
-        <Pressable android_ripple={{color: ColorPalette.androidRipple}} 
+        <Pressable android_ripple={{color: ColorPalette.darkRipple}} 
         style={({ pressed }) => [
           styles.button, pressed ? styles.buttonPressed : null,]}
           onPress={onPress}
@@ -42,14 +42,17 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
   },
+
   buttonPressed: {
-    opacity: 0.8,
+    opacity: 0.6,
   },
+
   innerContainer: {
     flex: 1,
     padding: 16,
     borderRadius: 8,
     backgroundColor: ColorPalette.bglight,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 })

@@ -14,29 +14,30 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-    return (
-        <>
-            <StatusBar style='dark' />
-                <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name=" " component={OpenScreen}/>
-                    <Stack.Screen name="New Game" component={NewGameScreen}/>
-                    <Stack.Screen name="Select Game" component={GameSeletionScreen}/>
-                    <Stack.Screen name="Game Overview" component={GameOverviewScreen}/>
-                    <Stack.Screen name="Completed Scenarios" component={ScenariosOverview}/>
-                    <Stack.Screen name="Items" component={ItemsOverview}/>
-                    <Stack.Screen name="Players" component={PlayersOverview}/>
-                </Stack.Navigator>
-            </NavigationContainer>
-        </>
+  return (
+      <>
+      <StatusBar style='light' />
+      <NavigationContainer>
+        <Stack.Navigator 
+            screenOptions={{
+            headerStyle: {backgroundColor: '#0d4064'}, 
+            headerTintColor: 'white',
+            contentStyle: {backgroundColor: '#092c44'}}}>
+            <Stack.Screen name="OpenScreen" component={OpenScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="NewGame" component={NewGameScreen} options={{title: 'New Game'}}/>
+            <Stack.Screen name="GameSelection" component={GameSeletionScreen} options={{title: 'Select Game'}}/>
+            <Stack.Screen name="GameOverview" component={GameOverviewScreen} options={{title: 'Game Overview'}}/>
+            <Stack.Screen name="Scenarios" component={ScenariosOverview} options={{title: 'Completed Scenarios'}}/>
+            <Stack.Screen name="Items" component={ItemsOverview}/>
+            <Stack.Screen name="Players" component={PlayersOverview}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+      </>
     )
 }
 
 const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-    },
-    backgroundImage: {
-        opacity: 0.6,
-    },
+  root: {
+    flex: 1,
+  },
 })

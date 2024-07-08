@@ -35,13 +35,11 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 16,
     borderRadius: 8,
-    // justifyContent: 'space-around',
   },
 
   container: {
     padding: 16,
     backgroundColor: ColorPalette.bglight,
-    alignItems: 'stretch',
 
     borderWidth: 1,
     borderRadius: 8,

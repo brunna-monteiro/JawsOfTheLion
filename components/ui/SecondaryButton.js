@@ -12,7 +12,7 @@ const SecondaryButton = ({ children, onPress }) => {
         onPress={onPress} 
         style={[styles.buttonInnerContainer, 
         {paddingHorizontal: paddingHorizontal}]} 
-        android_ripple={{color: ColorPalette.androidRipple}}>
+        android_ripple={{color: ColorPalette.lightRipple}}>
             <Text style={styles.buttonText}>{children}</Text>
         </Pressable>
     </View>
@@ -24,12 +24,12 @@ export default SecondaryButton
 const styles = StyleSheet.create({
     buttonOuterContainer: {
         overflow: 'hidden',
-        marginHorizontal: 8,
     },
 
     buttonInnerContainer: {
         backgroundColor: ColorPalette.primary,
         alignItems: 'center',
+        paddingVertical: 10,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: ColorPalette.OSShadow,

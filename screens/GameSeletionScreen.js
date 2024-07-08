@@ -6,7 +6,7 @@ const GameSeletionScreen = ({navigation}) => {
 
   const renderGame = (itemData) => {
     function pressHandler() {
-      navigation.navigate("Game Overview", {
+      navigation.navigate("GameOverview", {
         gameIds: itemData.item.id,
       })
     }
