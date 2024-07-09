@@ -6,6 +6,7 @@ const ColorPalette = {
     bgprimary: '#53585c',
     bgsecondary: '#533429',
     bglight: '#f9ecd1',
+    bgdark: '#c4b9a2',
 
     mainFont: '#fbd13a',
     textFont:  '#191a07',

@@ -1,31 +1,39 @@
-import { View, FlatList, Button, StyleSheet } from 'react-native'
+import { useState } from 'react'
+import { View, FlatList, StyleSheet } from 'react-native'
 import { EVENTS, PLAYERS } from '../data/data'
 import SecondaryButton from '../components/ui/SecondaryButton'
-import ColorPalette from '../constants/ColorPalette'
 import BodyText from '../components/ui/BodyText'
 import SimpleText from '../components/ui/SimpleText'
 import EventItem from '../components/EventItem'
 import EventInput from '../components/EventInput'
+import ColorPalette from '../constants/ColorPalette'
+import EventCompleted from '../components/event/EventCompleted'
 
 
 const GameOverviewScreen = ({ navigation, route }) => {
   const gId = route.params.gameIds
 
+  const [ eventDisplay, setEventDisplay ] = useState(null)
+
   const scenarioContainer = () => {
       navigation.navigate("Scenarios", {gameIds: gId})
     }
-// check if an event was complete
-  function addEventHandler(enteredEventNum) {
-    const checkEvent = EVENTS.find((event) => event.id === gId).completed
-  }
-  const displayedEvents = EVENTS.filter((item) => {
-    return item.gameIds.indexOf(gId) >= 0
-  })
+    const displayedEvents = EVENTS.filter((item) => {
+      return item.gameIds.indexOf(gId) >= 0
+    })
+    
+    function renderEvent(itemData) {
+      return <EventItem id={itemData.item.id}/>
+    }
 
-  function renderEvent(itemData) {
-    return <EventItem id={itemData.item.id}/>
-  }
 
+  // Check if a city event is completed or not
+    function eventHandler(enteredEventNum) {
+      const checkEvent = displayedEvents.find((event) => event.id === enteredEventNum)
+      if(checkEvent) setEventDisplay('completed')
+      else setEventDisplay('not-completed')
+    }
+    
   const itemContainer = () => {
     navigation.navigate("Items", {gameIds: gId})
   }
@@ -45,16 +53,19 @@ const GameOverviewScreen = ({ navigation, route }) => {
   return (
     <>
     <View style={styles.outterContainer}>
-      
+  
       <View style={styles.container}>
-        <BodyText>Available Scenarios</BodyText>
-        <SecondaryButton onPress={scenarioContainer}>Completed Scenarios</SecondaryButton>
+        <BodyText>Scenarios</BodyText>
+        <SecondaryButton onPress={scenarioContainer}>Scenarios Details</SecondaryButton>
       </View>
-        
 
       <View style={styles.container}>
-        <BodyText>Completed City Events</BodyText> 
-        <EventInput onAddEvent={addEventHandler}/>
+        <BodyText>City Events</BodyText> 
+        <EventInput onClickEvent={eventHandler}/>
+        {
+          eventDisplay && 
+          <EventCompleted type={ eventDisplay === 'completed' ? 'success' : 'failure'} />
+        }
         <FlatList 
         data={displayedEvents} 
         keyExtractor={(item) => item.id} 
@@ -62,9 +73,10 @@ const GameOverviewScreen = ({ navigation, route }) => {
         numColumns={6}/>
       </View>
 
+
       <View style={styles.container}>
-        <BodyText>Available Items</BodyText>
-        <SecondaryButton onPress={itemContainer}>Acquired Items</SecondaryButton>
+        <BodyText>Items</BodyText>
+        <SecondaryButton onPress={itemContainer}>Items Details</SecondaryButton>
       </View>
 
       <View style={styles.container}>
@@ -88,22 +100,26 @@ const GameOverviewScreen = ({ navigation, route }) => {
 export default GameOverviewScreen
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+
   outterContainer: {
     flex: 1,
     marginHorizontal: 16,
-    borderRadius: 8,
-    justifyContent: 'space-around',
+    marginVertical: 10,
+    justifyContent: 'space-evenly',
   },
 
   container: {
-    flex: 2,
-    padding: 16,
+    flex: 1,
+    paddingHorizontal: 16,
     backgroundColor: ColorPalette.bglight,
 
     borderWidth: 1,
     borderRadius: 8,
     borderColor: ColorPalette.OSShadow,
-    marginVertical: 40,
+    marginVertical: 10,
     justifyContent: 'space-evenly',
   },
 
