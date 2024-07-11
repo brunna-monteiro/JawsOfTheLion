@@ -7,8 +7,10 @@ import NewGameScreen from './screens/NewGameScreen'
 import GameSeletionScreen from './screens/GameSeletionScreen'
 import GameOverviewScreen from './screens/GameScreen'
 import ScenariosOverview from './screens/ScenariosOverview'
+import EventsOverview from './screens/EventsOverview'
 import ItemsOverview from './screens/ItemsOverview'
 import PlayersOverview from './screens/PlayersOverview'
+import { Ionicons } from '@expo/vector-icons'
 
 const Stack = createNativeStackNavigator()
 
@@ -26,8 +28,9 @@ export default function App() {
             <Stack.Screen name="OpenScreen" component={OpenScreen} options={{headerShown: false}}/>
             <Stack.Screen name="NewGame" component={NewGameScreen} options={{title: 'New Game'}}/>
             <Stack.Screen name="GameSelection" component={GameSeletionScreen} options={{title: 'Select Game'}}/>
-            <Stack.Screen name="GameOverview" component={GameOverviewScreen} options={{title: 'Game Overview'}}/>
+            <Stack.Screen name="GameOverview" component={GameOverviewScreen} options={{title: 'Game Overview'} }/>
             <Stack.Screen name="Scenarios" component={ScenariosOverview} options={{title: 'Completed Scenarios'}}/>
+            <Stack.Screen name="Events" component={EventsOverview}/>
             <Stack.Screen name="Items" component={ItemsOverview}/>
             <Stack.Screen name="Players" component={PlayersOverview}/>
         </Stack.Navigator>

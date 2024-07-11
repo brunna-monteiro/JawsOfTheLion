@@ -1,7 +1,7 @@
 import { View, TextInput, StyleSheet } from 'react-native'
-import SecondaryButton from './ui/SecondaryButton'
+import SecondaryButton from '../ui/SecondaryButton'
 import { useState } from 'react'
-import ColorPalette from '../constants/ColorPalette'
+import ColorPalette from '../../constants/ColorPalette'
 
 const EventInput = (props) => {
   const [enteredEventNum, setEnteredEventNum] = useState('')

@@ -70,76 +70,91 @@ export const EVENTS = [
   new Event(
     '1',
     ['g1'],
+    'A',
     true
   ),
   new Event(
     '2',
     [],
+    'B',
     false
   ),
   new Event(
     '3',
     ['g2'],
+    'A',
     true
   ),
   new Event(
     '4',
     [],
+    'A',
     false
   ),
   new Event(
     '5',
     [],
+    'A',
     false
   ),
   new Event(
     '6',
     ['g2'],
+    'B',
     true
   ),
   new Event(
     '7',
     ['g1'],
+    'A',
     true
   ),
   new Event(
     '8',
     ['g2'],
+    'B',
     true
   ),
   new Event(
     '9',
     [],
+    'A',
     false
   ),
   new Event(
     '10',
     ['g2'],
+    'B',
     true
   ),
   new Event(
     '11',
     ['g2'],
+    'A',
     true
   ),
   new Event(
     '12',
     ['g2'],
+    'B',
     true
   ),
   new Event(
     '13',
     [],
+    'A',
     false
   ),
   new Event(
     '14',
     [],
+    'B',
     false
   ),
   new Event(
     '15',
     ['g2'],
+    'A',
     true
   ),
   new Event(

@@ -16,6 +16,9 @@ const ColorPalette = {
     lightRipple:'#bcd2e7',
     darkRipple: '#586068',
     OSShadow: '#140a06',
+
+    sucess: '#20cb31',
+    failure: '#cb2727',
 }
 
 export default ColorPalette

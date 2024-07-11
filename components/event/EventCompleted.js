@@ -1,16 +1,17 @@
 import { View, StyleSheet } from 'react-native'
 import SimpleText from '../ui/SimpleText'
+import ColorPalette from '../../constants/ColorPalette'
 import { FontAwesome } from '@expo/vector-icons'
 
 const EventCompleted = (props) => {
     const iconState = {
         success: {
             name: 'check-circle',
-            color: '#2dfb41',
+            color: ColorPalette.sucess,
         },
         failure: {
             name: 'times-circle',
-            color: '#f62c2c',
+            color: ColorPalette.failure,
         }
     }
     const label = {
@@ -24,7 +25,7 @@ const EventCompleted = (props) => {
     return (
         <View style={styles.container}>
             <FontAwesome size={24} {...getIconState(props.type)} />
-            <SimpleText>{getLabel(props.type)}</SimpleText>
+            <SimpleText style={styles.text}>{getLabel(props.type)}</SimpleText>
         </View>
     )
 }
@@ -33,7 +34,13 @@ export default EventCompleted
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 20,
+    },
+
+    text: {
+        marginHorizontal: 10,
     }
     
 })
