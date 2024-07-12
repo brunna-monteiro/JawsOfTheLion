@@ -2,7 +2,7 @@ import { Pressable } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import ColorPalette from '../../constants/ColorPalette'
 
-function IconButton(props, {onPress}) {
+function IconButton(props) {
     const iconState = {
         menu: {
             name: 'menu',
@@ -15,9 +15,12 @@ function IconButton(props, {onPress}) {
 
     const getIconState = (key) => iconState[key]
 
+    const color = props.color ?? ColorPalette.bglight
+    const bgColor = props.bgColor ?? 'transparent'
+
   return (
-    <Pressable onPress={onPress}>
-        <Feather {...getIconState(props.type)} size={24} color={ColorPalette.bglight} />
+    <Pressable onPress={props.onPress} style={{ backgroundColor: bgColor, padding: 8, borderRadius: 8 }}>
+        <Feather {...getIconState(props.type)} size={24} color={color} />
     </Pressable>
 
   )

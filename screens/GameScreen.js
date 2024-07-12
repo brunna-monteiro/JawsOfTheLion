@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react'
-import { ScrollView, View, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { EVENTS } from '../data/data'
 import ColorPalette from '../constants/ColorPalette'
 import SecondaryButton from '../components/ui/SecondaryButton'
@@ -55,38 +55,38 @@ const GameOverviewScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.root}>
-    <ScrollView style={styles.scrollView}>
-      {/* <KeyboardAvoidingView style={styles.root} behavior='position'> */}
-        <View style={styles.outterContainer}>
+      <ScrollView style={styles.scrollView}>
+        <KeyboardAvoidingView style={styles.root} behavior='position'>
+          <View style={styles.outterContainer}>
       
-          <View style={styles.container}>
-            <BodyText>Scenarios</BodyText>
-            <SecondaryButton onPress={scenarioContainer}>Scenarios Details</SecondaryButton>
-          </View>
+            <View style={styles.container}>
+              <BodyText>Scenarios</BodyText>
+              <SecondaryButton onPress={scenarioContainer}>Scenarios Details</SecondaryButton>
+            </View>
 
-          <View style={styles.container}>
-            <BodyText>City Events</BodyText> 
-            <EventInput onClickEvent={eventHandler}/>
-            {
-              eventDisplay && 
-              <EventCompleted type={ eventDisplay === 'completed' ? 'success' : 'failure'} />
-            }
-            <SecondaryButton onPress={eventContainer}>Events Details</SecondaryButton>
-          </View>
+            <View style={styles.container}>
+              <BodyText>City Events</BodyText> 
+              <EventInput onClickEvent={eventHandler}/>
+              {
+                eventDisplay && 
+                <EventCompleted type={ eventDisplay === 'completed' ? 'success' : 'failure'} />
+              }
+              <SecondaryButton onPress={eventContainer}>Events Details</SecondaryButton>
+            </View>
 
-          <View style={styles.container}>
-            <BodyText>Items</BodyText>
-            <SecondaryButton onPress={itemContainer}>Items Details</SecondaryButton>
-          </View>
+            <View style={styles.container}>
+              <BodyText>Items</BodyText>
+              <SecondaryButton onPress={itemContainer}>Items Details</SecondaryButton>
+            </View>
 
-          <View style={styles.container}>
-            <BodyText>Players</BodyText>
-            <SecondaryButton onPress={playerContainer}>Players Details</SecondaryButton>
-          </View>
+            <View style={styles.container}>
+              <BodyText>Players</BodyText>
+              <SecondaryButton onPress={playerContainer}>Players Details</SecondaryButton>
+            </View>
 
-        </View>
-      {/* </KeyboardAvoidingView> */}
-    </ScrollView>
+          </View>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   )
 }

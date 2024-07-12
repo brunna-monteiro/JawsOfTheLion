@@ -1,11 +1,13 @@
 import { View, FlatList, StyleSheet } from 'react-native'
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import ColorPalette from '../constants/ColorPalette'
 import { EVENTS } from '../data/data'
 import EventItem from '../components/event/EventItem'
 import IconButton from '../components/ui/IconButton'
 
 const EventsOverview = ({ route, navigation }) => {
+
+  const [isEditEnabled, setIsEditEnabled] = useState(false)
 
   const gId = route.params.gameIds
 
@@ -14,17 +16,21 @@ const EventsOverview = ({ route, navigation }) => {
     })
     
   function renderEvent(itemData) {
-    return <EventItem id={itemData.item.id} choice={itemData.item.choice}/>
+    return <EventItem id={itemData.item.id} isEditEnabled={isEditEnabled}/>
     }
   
   function editButtonHandler() {
-    console.log('Pressed!')
+    // o callback vai utilizar o atual estado quando a
+    // função setIsEditEnabled for chamada. Se for passado
+    // somente !isEditEnabled para a função, o estado considerado
+    // pode ter mudado quando a função efetivamente executar
+    setIsEditEnabled(currentState => !currentState)
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton type={'edit'} onPress={editButtonHandler}/>
+        return <IconButton type={'edit'} onPress={editButtonHandler} bgColor={isEditEnabled ? '#368' : null} />
       }
     })
   }, [navigation, editButtonHandler])
