@@ -23,7 +23,7 @@ const EventsOverview = ({ route, navigation }) => {
     // o callback vai utilizar o atual estado quando a
     // função setIsEditEnabled for chamada. Se for passado
     // somente !isEditEnabled para a função, o estado considerado
-    // pode ter mudado quando a função efetivamente executar
+    // pode ter mudado quando a função efetivamente executar.
     setIsEditEnabled(currentState => !currentState)
   }
 
