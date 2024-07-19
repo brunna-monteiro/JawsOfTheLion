@@ -1,9 +1,20 @@
+import { useEffect } from 'react'
+import { useGame } from '../components/GameContext'
 import { FlatList } from 'react-native'
 import { ITEMS } from '../data/data'
 import ItemItem from '../components/ItemItem'
 
 const ItemsOverview = ({ route }) => {
-  const gId = route.params.gameIds
+  const { gameIds, setGameIds } = useGame()
+
+  useEffect(() => {
+    if (route.params?.gameIds) {
+      setGameIds(route.params.gameIds)
+    }
+  }, [route.params?.gameIds, setGameIds])
+
+  const gId = gameIds
+
   const displayedItems = ITEMS.filter((item) => {
     return item.gameIds.indexOf(gId) >= 0
   })

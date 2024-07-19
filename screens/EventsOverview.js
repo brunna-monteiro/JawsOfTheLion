@@ -1,19 +1,51 @@
 import { View, FlatList, StyleSheet } from 'react-native'
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState, useEffect } from 'react'
 import ColorPalette from '../constants/ColorPalette'
 import { EVENTS } from '../data/data'
 import EventItem from '../components/event/EventItem'
 import IconButton from '../components/ui/IconButton'
+import { useGame } from '../components/GameContext'
 
 const EventsOverview = ({ route, navigation }) => {
+  const { gameIds, setGameIds } = useGame()
+
+  // Set gameIds from route params when component mounts
+  useEffect(() => {
+    if (route.params?.gameIds) {
+      setGameIds(route.params.gameIds)
+    }
+  }, [route.params?.gameIds, setGameIds])
 
   const [isEditEnabled, setIsEditEnabled] = useState(false)
 
-  const gId = route.params.gameIds
+  // Use the gameIds from the context instead of directly from the route
+  const gId = gameIds
 
   const displayedEvents = EVENTS.filter((item) => {
     return item.gameIds.indexOf(gId) >= 0
-    })
+  })
+
+// const EventsOverview = ({ route, navigation }) => {
+
+//   const { gameIds, setGameIds } = useGame();
+
+//   // Set gameIds from route params when component mounts
+//   useEffect(() => {
+//     if (route.params?.gameIds) {
+//       setGameIds(route.params.gameIds);
+//     }
+//   }, [route.params?.gameIds])
+  
+
+
+//   const [isEditEnabled, setIsEditEnabled] = useState(false)
+
+//   const gId = route.params.gameIds
+
+
+//   const displayedEvents = EVENTS.filter((item) => {
+//     return item.gameIds.indexOf(gId) >= 0
+//     })
     
   function renderEvent(itemData) {
     return <EventItem id={itemData.item.id} isEditEnabled={isEditEnabled}/>
@@ -30,7 +62,11 @@ const EventsOverview = ({ route, navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton type={'edit'} onPress={editButtonHandler} bgColor={isEditEnabled ? '#368' : null} />
+        return <IconButton 
+        icon={isEditEnabled ? 'check-square' : 'edit'} 
+        color={ColorPalette.icon} 
+        onPress={editButtonHandler} 
+        bgColor={isEditEnabled ? ColorPalette.activeIcon : null} />
       }
     })
   }, [navigation, editButtonHandler])

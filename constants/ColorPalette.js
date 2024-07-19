@@ -23,7 +23,10 @@ const ColorPalette = {
 
     notCompleted: '#452626',
     choiceA: '#112c63',
-    choiceB: '#115b63'
+    choiceB: '#115b63',
+
+    icon: '#ffffff',
+    activeIcon: '#368',
 }
 
 export default ColorPalette

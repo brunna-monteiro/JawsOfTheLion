@@ -66,126 +66,128 @@ export const ITEMS = [
   ),
 ]
 
+// export const EVENTS = new Event([])
+
 export const EVENTS = [
   new Event(
     '1',
     ['g1'],
-    'A',
-    true
   ),
   new Event(
     '2',
     [],
-    'B',
-    false
   ),
   new Event(
     '3',
     ['g2'],
-    'A',
-    true
   ),
   new Event(
     '4',
     [],
-    'A',
-    false
   ),
   new Event(
     '5',
     [],
-    'A',
-    false
   ),
   new Event(
     '6',
     ['g2'],
-    'B',
-    true
   ),
   new Event(
     '7',
     ['g1'],
-    'A',
-    true
   ),
   new Event(
     '8',
     ['g2'],
-    'B',
-    true
   ),
   new Event(
     '9',
     [],
-    'A',
-    false
   ),
   new Event(
     '10',
     ['g2'],
-    'B',
-    true
   ),
   new Event(
     '11',
     ['g2'],
-    'A',
-    true
   ),
   new Event(
     '12',
     ['g2'],
-    'B',
-    true
   ),
   new Event(
     '13',
     [],
-    'A',
-    false
   ),
   new Event(
     '14',
     [],
-    'B',
-    false
   ),
   new Event(
     '15',
     ['g2'],
-    'A',
-    true
   ),
   new Event(
     '16',
     ['g2'],
-    true
   ),
   new Event(
     '17',
     ['g1'],
-    true
   ),
   new Event(
     '18',
     ['g1'],
-    true
   ),
   new Event(
     '19',
     [],
-    false
   ),
   new Event(
     '20',
     [],
-    false
   ),
   new Event(
     '21',
     ['g2'],
-    true
+  ),
+  new Event(
+    '22',
+    ['g2'],
+  ),
+  new Event(
+    '23',
+    ['g2'],
+  ),
+  new Event(
+    '24',
+    ['g2'],
+  ),
+  new Event(
+    '25',
+    ['g2'],
+  ),
+  new Event(
+    '26',
+    ['g2'],
+  ),
+  new Event(
+    '27',
+    ['g2'],
+  ),
+  new Event(
+    '28',
+    ['g2'],
+  ),
+  new Event(
+    '29',
+    ['g2'],
+  ),
+  new Event(
+    '30',
+    ['g2'],
   ),
 ]
 

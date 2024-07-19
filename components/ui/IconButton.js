@@ -1,29 +1,25 @@
-import { Pressable } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import ColorPalette from '../../constants/ColorPalette'
 
-function IconButton(props) {
-    const iconState = {
-        menu: {
-            name: 'menu',
-        },
-
-        edit: {
-            name: 'edit',
-        }
-    }
-
-    const getIconState = (key) => iconState[key]
-
-    const color = props.color ?? ColorPalette.bglight
-    const bgColor = props.bgColor ?? 'transparent'
+function IconButton({ icon, color, bgColor, onPress }) {
 
   return (
-    <Pressable onPress={props.onPress} style={{ backgroundColor: bgColor, padding: 8, borderRadius: 8 }}>
-        <Feather {...getIconState(props.type)} size={24} color={color} />
+    <Pressable 
+    onPress={onPress} 
+    style={({ pressed }) => pressed && styles.pressed}>
+      <Feather name={icon} size={24} color={color} backgroundColor={bgColor} />
     </Pressable>
 
   )
 }
 
 export default IconButton
+
+const styles = StyleSheet.create({
+  pressed: {
+    borderRadius: 8, 
+    opacity: 0.7,
+  }
+})
+
+

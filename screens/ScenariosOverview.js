@@ -1,10 +1,21 @@
 import { View, FlatList, StyleSheet } from 'react-native'
+import { useEffect } from 'react'
+import { useGame } from '../components/GameContext'
 import { SCENARIOS } from '../data/data'
 import ColorPalette from '../constants/ColorPalette'
 import ScenarioItem from '../components/ScenarioItem'
 
 const ScenariosOverview = ({ route }) => {
-  const gId = route.params.gameIds
+  const { gameIds, setGameIds } = useGame()
+
+  useEffect(() => {
+    if (route.params?.gameIds) {
+      setGameIds(route.params.gameIds)
+    }
+  }, [route.params?.gameIds, setGameIds])
+
+  const gId = gameIds
+  
   const displayedScenarios = SCENARIOS.filter((scenario) => {
     return scenario.gameIds.indexOf(gId) >= 0
   })
@@ -16,7 +27,7 @@ const ScenariosOverview = ({ route }) => {
   }
   return (
     <>
-     <View style={styles.outterContainer}>
+      <View style={styles.outterContainer}>
         <View style={styles.container}>
           <FlatList 
           data={displayedScenarios} 

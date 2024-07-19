@@ -1,11 +1,21 @@
 import { View, FlatList, StyleSheet } from 'react-native'
+import { useEffect } from 'react'
+import { useGame } from '../components/GameContext'
 import { PLAYERS } from '../data/data'
 import ColorPalette from '../constants/ColorPalette'
-import BodyText from '../components/ui/BodyText'
 import PlayerItem from '../components/PlayerItem'
 
 const PlayersOverview = ({ route }) => {
-  const gId = route.params.gameIds
+  const { gameIds, setGameIds } = useGame()
+
+  useEffect(() => {
+    if (route.params?.gameIds) {
+      setGameIds(route.params.gameIds)
+    }
+  }, [route.params?.gameIds, setGameIds])
+
+  const gId = gameIds
+
   const displayedPlayers = PLAYERS.filter((item) => {
     return item.gameIds.indexOf(gId) >= 0
   })

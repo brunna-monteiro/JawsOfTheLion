@@ -6,8 +6,10 @@ const GameSeletionScreen = ({navigation}) => {
 
   const renderGame = (itemData) => {
     function pressHandler() {
-      navigation.navigate("GameOverview", {
-        gameIds: itemData.item.id,
+      navigation.navigate("TabNavigator", { 
+        screen: "GameOverviewScreen", 
+        params: { gameIds: itemData.item.id,
+         },
       })
     }
   
