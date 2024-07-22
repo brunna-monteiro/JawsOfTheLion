@@ -1,32 +1,32 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ColorPalette from '../../constants/ColorPalette'
 
-const EventItem = ({ id, isEditEnabled }) => {
-  const [text, setText] = useState(id)
+const EventItem = ({ id, isEditEnabled, onToggle, state }) => {
+  const renderText = () => {
+    if (!state || !state.choice) return id
+    return id + state.choice
+  }
+
+  const [text, setText] = useState(renderText())
   const [bgColor, setBgColor] = useState(ColorPalette.notCompleted)
 
-  const texts = [
-    id,
-    id + ' A',
-    id + ' B',
-  ]
+  const colors = {
+    [id]: ColorPalette.notCompleted,
+    [id + 'A']: ColorPalette.choiceA,
+    [id + 'B']: ColorPalette.choiceB
+  }
 
-  const eventColor = [
-    ColorPalette.notCompleted,
-    ColorPalette.choiceA,
-    ColorPalette.choiceB
-  ]
+  useEffect(() => {
+    setBgColor(colors[text])
+  }, [text])
+
+  useEffect(() => {
+    setText(renderText())
+  })
 
   const tapHandler = () => {
-    if (!isEditEnabled) return
-    const currentTextIndex = texts.indexOf(text)
-    const nextTextIndex = (currentTextIndex + 1) % texts.length
-    setText(texts[nextTextIndex])
-
-    const currentColor = eventColor.indexOf(bgColor)
-    const nextColor = (currentColor + 1) % eventColor.length
-    setBgColor(eventColor[nextColor])
+    onToggle(id)
   }
 
   return (

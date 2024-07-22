@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { GameProvider } from './components/GameContext'
 
 import OpenScreen from './screens/OpenScreen'
 import NewGameScreen from './screens/NewGameScreen'
@@ -13,10 +14,10 @@ import EventsOverview from './screens/EventsOverview'
 import ItemsOverview from './screens/ItemsOverview'
 import PlayersOverview from './screens/PlayersOverview'
 
+import ColorPalette from './constants/ColorPalette'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-import { GameProvider } from './components/GameContext'
 
 const Stack = createNativeStackNavigator()
 const BottomTab = createBottomTabNavigator()
@@ -26,19 +27,22 @@ function TabNavigator() {
   return (
     <BottomTab.Navigator 
       screenOptions={{
-      headerStyle: {backgroundColor: '#0d4064'}, 
-      headerTintColor: 'white',
-      tabBarActiveBackgroundColor: '#2488d0',
-      tabBarActiveTintColor: 'black'
+      headerStyle: {backgroundColor: ColorPalette.header}, 
+      headerTintColor: ColorPalette.icon,
+      tabBarActiveBackgroundColor: ColorPalette.tabActive,
+      tabBarActiveTintColor: ColorPalette.icon,
+      tabBarStyle: {backgroundColor: ColorPalette.footer},
+      tabBarLabelStyle: {fontSize: 12},
       }}>
 
-      <BottomTab.Screen name="GameOverviewScreen" component={GameOverviewScreen}/>
+      <BottomTab.Screen name="GameOverviewScreen" component={GameOverviewScreen} options={
+        { title: 'Overview', tabBarIcon: ({ color, size}) => (<MaterialCommunityIcons name='file-document' color={color} size={size}/>)}}/>
 
       <BottomTab.Screen name="Scenarios" component={ScenariosOverview} options={
         { tabBarIcon: ({ color, size}) => (<FontAwesome6 name='mountain-city' color={color} size={size}/>)}}/>
 
       <BottomTab.Screen name="Events" component={EventsOverview} options={
-        { tabBarIcon: ({ color, size}) => (<MaterialCommunityIcons name='table-check' color={color} size={size}/>)}}/>
+        { tabBarIcon: ({ color, size}) => (<MaterialCommunityIcons name='seal' color={color} size={size}/>)}}/>
 
       <BottomTab.Screen name="Items" component={ItemsOverview} options={
         { tabBarIcon: ({ color, size}) => (<MaterialCommunityIcons name='shield-sword' color={color} size={size}/>)}}/>
@@ -53,9 +57,9 @@ function StackNavigator() {
   return (
     <Stack.Navigator 
       screenOptions={{
-      headerStyle: {backgroundColor: '#0d4064'}, 
-      headerTintColor: 'white',
-      contentStyle: {backgroundColor: '#092c44'}}}>
+      headerStyle: {backgroundColor: ColorPalette.header}, 
+      headerTintColor: ColorPalette.titleFont,
+      contentStyle: {backgroundColor: ColorPalette.primary900}}}>
 
       <Stack.Screen name="OpenScreen" component={OpenScreen} options={{headerShown: false}}/>
 
@@ -63,7 +67,7 @@ function StackNavigator() {
 
       <Stack.Screen name="GameSelection" component={GameSeletionScreen} options={{title: 'Select Game'}}/>
 
-      <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}}/>
 
     </Stack.Navigator>
   )

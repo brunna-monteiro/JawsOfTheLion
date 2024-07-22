@@ -1,12 +1,13 @@
 const ColorPalette = {
     primary: '#0d3f62',
     primary200: '#89abe5',
-    secondary: '#2471cf',
+    primary900: '#092c44',
 
-    bgprimary: '#53585c',
-    bgsecondary: '#533429',
-    bglight: '#f9ecd1',
-    bgdark: '#c4b9a2',
+    boxLight: '#f9ecd1',
+    boxDark: '#c4b9a2',
+
+    header: '#0d4064',
+    footer: '#0d4064',
 
     mainFont: '#fbd13a',
     textFont:  '#191a07',
@@ -16,7 +17,7 @@ const ColorPalette = {
     lightRipple:'#bcd2e7',
     darkRipple: '#586068',
     OSShadow: '#140a06',
-    border: '#000000',
+    border: '#533429',
 
     sucess: '#20cb31',
     failure: '#cb2727',
@@ -26,7 +27,7 @@ const ColorPalette = {
     choiceB: '#115b63',
 
     icon: '#ffffff',
-    activeIcon: '#368',
+    tabActive: '#266a9e',
 }
 
 export default ColorPalette

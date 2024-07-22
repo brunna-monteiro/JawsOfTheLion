@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
 
     textInput: {
       borderWidth: 1,
-      borderColor: ColorPalette.bgsecondary,
-      backgroundColor: ColorPalette.bgdark,
+      borderColor: ColorPalette.border,
+      backgroundColor: ColorPalette.boxDark,
       borderRadius: 8,
 
       paddingVertical: 5,

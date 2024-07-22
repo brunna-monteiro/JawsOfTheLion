@@ -7,48 +7,61 @@ import IconButton from '../components/ui/IconButton'
 import { useGame } from '../components/GameContext'
 
 const EventsOverview = ({ route, navigation }) => {
-  const { gameIds, setGameIds } = useGame()
+  const { gameIds, setGameIds, state, setState, events, setEvents } = useGame()
 
   // Set gameIds from route params when component mounts
   useEffect(() => {
     if (route.params?.gameIds) {
       setGameIds(route.params.gameIds)
     }
-  }, [route.params?.gameIds, setGameIds])
+  }, [route.params?.gameIds, setGameIds, state])
 
   const [isEditEnabled, setIsEditEnabled] = useState(false)
 
+  const toggleEvent = (eventNumber) => {
+    const toggledEvent = events.find(event => event.id === eventNumber) || {}
+    if (!toggledEvent.id) {
+      toggledEvent.id = eventNumber
+      toggledEvent.gameIds = [gameIds]
+      toggledEvent.choice = null
+    }
+
+    switch (toggledEvent.choice) {
+      case null:
+        toggledEvent.choice = 'A'
+        break
+      case 'A':
+        toggledEvent.choice = 'B'
+        break
+      case 'B':
+        toggledEvent.choice = null
+        break
+      default:
+        throw new Error('Invalid case')
+    }
+
+    return toggledEvent
+  }
+  const addEventToList = (eventNumber) => {
+    setEvents((currentState => {
+      const event = toggleEvent(eventNumber)
+      const editedEvents = currentState.filter(e => e.id !== eventNumber)
+      return [
+        ...editedEvents,
+        event
+      ]
+    }))
+  }
+
+  useEffect(() => {
+    console.log(events)
+  }, [events])
+
   // Use the gameIds from the context instead of directly from the route
   const gId = gameIds
-
-  const displayedEvents = EVENTS.filter((item) => {
-    return item.gameIds.indexOf(gId) >= 0
-  })
-
-// const EventsOverview = ({ route, navigation }) => {
-
-//   const { gameIds, setGameIds } = useGame();
-
-//   // Set gameIds from route params when component mounts
-//   useEffect(() => {
-//     if (route.params?.gameIds) {
-//       setGameIds(route.params.gameIds);
-//     }
-//   }, [route.params?.gameIds])
-  
-
-
-//   const [isEditEnabled, setIsEditEnabled] = useState(false)
-
-//   const gId = route.params.gameIds
-
-
-//   const displayedEvents = EVENTS.filter((item) => {
-//     return item.gameIds.indexOf(gId) >= 0
-//     })
     
   function renderEvent(itemData) {
-    return <EventItem id={itemData.item.id} isEditEnabled={isEditEnabled}/>
+    return <EventItem id={itemData.item.id} isEditEnabled={isEditEnabled} onToggle={addEventToList} state={events.find(e => e.id === itemData.item.id)}/>
     }
   
   function editButtonHandler() {
@@ -57,6 +70,7 @@ const EventsOverview = ({ route, navigation }) => {
     // somente !isEditEnabled para a função, o estado considerado
     // pode ter mudado quando a função efetivamente executar.
     setIsEditEnabled(currentState => !currentState)
+    setState({ ...state, newValue: 'Updated!' })
   }
 
   useLayoutEffect(() => {
@@ -66,7 +80,8 @@ const EventsOverview = ({ route, navigation }) => {
         icon={isEditEnabled ? 'check-square' : 'edit'} 
         color={ColorPalette.icon} 
         onPress={editButtonHandler} 
-        bgColor={isEditEnabled ? ColorPalette.activeIcon : null} />
+        bgColor={isEditEnabled ? ColorPalette.tabActive : null}
+        style={{margin: 10}} />
       }
     })
   }, [navigation, editButtonHandler])
@@ -76,7 +91,7 @@ const EventsOverview = ({ route, navigation }) => {
       <View style={styles.outterContainer}>
         <View style={styles.container}>
           <FlatList 
-          data={displayedEvents} 
+          data={EVENTS} 
           keyExtractor={(item) => item.id} 
           renderItem={renderEvent}
           numColumns={5}/>
@@ -98,7 +113,7 @@ const styles = StyleSheet.create({
   
     container: {
       flex: 1,
-      backgroundColor: ColorPalette.bglight,
+      backgroundColor: ColorPalette.boxLight,
       alignItems: 'center',
   
       borderWidth: 1,

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
 
     // ioS shadow
-    backgroundColor: ColorPalette.bglight,
+    backgroundColor: ColorPalette.boxLight,
     shadowColor: ColorPalette.OSShadow,
     shadowOpacity: 0.25,
     shadowOffset: {width: 0, height: 2},
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     borderRadius: 8,
-    backgroundColor: ColorPalette.bglight,
+    backgroundColor: ColorPalette.boxLight,
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },

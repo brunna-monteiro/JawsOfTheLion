@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 
   container: {
     padding: 16,
-    backgroundColor: ColorPalette.bglight,
+    backgroundColor: ColorPalette.boxLight,
 
     borderWidth: 1,
     borderRadius: 8,

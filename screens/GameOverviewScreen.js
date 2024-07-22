@@ -11,7 +11,7 @@ import { useGame } from '../components/GameContext'
 
 const GameOverviewScreen = ({ navigation, route }) => {
 
-  const { gameIds, setGameIds } = useGame();
+  const { gameIds, setGameIds, state, setState } = useGame();
 
   useEffect(() => {
     if (route.params?.gameIds) {
@@ -36,9 +36,12 @@ const GameOverviewScreen = ({ navigation, route }) => {
     return item.gameIds.indexOf(gId) >= 0
   })
 
+
+
   // Check if a city event is completed or not
   function eventHandler(enteredEventNum) {
     const checkEvent = displayedEvents.find((event) => event.id === enteredEventNum)
+  
     if(checkEvent) setEventDisplay('completed')
     else setEventDisplay('not-completed')
   }
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingHorizontal: 16,
-    backgroundColor: ColorPalette.bglight,
+    backgroundColor: ColorPalette.boxLight,
 
     borderWidth: 1,
     borderRadius: 8,
