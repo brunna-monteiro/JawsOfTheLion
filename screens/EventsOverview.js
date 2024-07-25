@@ -7,14 +7,14 @@ import IconButton from '../components/ui/IconButton'
 import { useGame } from '../components/GameContext'
 
 const EventsOverview = ({ route, navigation }) => {
-  const { gameIds, setGameIds, state, setState, events, setEvents } = useGame()
+  const { gameIds, setGameIds, events, setEvents } = useGame()
 
   // Set gameIds from route params when component mounts
   useEffect(() => {
     if (route.params?.gameIds) {
       setGameIds(route.params.gameIds)
     }
-  }, [route.params?.gameIds, setGameIds, state])
+  }, [route.params?.gameIds, setGameIds])
 
   const [isEditEnabled, setIsEditEnabled] = useState(false)
 
@@ -24,6 +24,8 @@ const EventsOverview = ({ route, navigation }) => {
       toggledEvent.id = eventNumber
       toggledEvent.gameIds = [gameIds]
       toggledEvent.choice = null
+    } else if (!toggledEvent.gameIds.find(gameIds)) {
+      toggledEvent.gameIds.push(gameIds)
     }
 
     switch (toggledEvent.choice) {
@@ -70,7 +72,7 @@ const EventsOverview = ({ route, navigation }) => {
     // somente !isEditEnabled para a função, o estado considerado
     // pode ter mudado quando a função efetivamente executar.
     setIsEditEnabled(currentState => !currentState)
-    setState({ ...state, newValue: 'Updated!' })
+    // setState({ ...state, newValue: 'Updated!' })
   }
 
   useLayoutEffect(() => {

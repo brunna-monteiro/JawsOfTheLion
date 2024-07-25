@@ -1,58 +1,33 @@
 import { useState, useEffect } from 'react'
 import { ScrollView, View, StyleSheet, KeyboardAvoidingView } from 'react-native'
-import { EVENTS } from '../data/data'
 import ColorPalette from '../constants/ColorPalette'
-import SecondaryButton from '../components/ui/SecondaryButton'
 import BodyText from '../components/ui/BodyText'
 import EventInput from '../components/event/EventInput'
 import EventCompleted from '../components/event/EventCompleted'
 import { useGame } from '../components/GameContext'
 
 
-const GameOverviewScreen = ({ navigation, route }) => {
+const GameOverviewScreen = ({ route }) => {
 
-  const { gameIds, setGameIds, state, setState } = useGame();
+  const { gameIds, setGameIds, events, setEvents, state} = useGame()
+  const { gameId } = route.params
+  const game = state.games.find(game => game.id === gameId)
 
   useEffect(() => {
     if (route.params?.gameIds) {
       setGameIds(route.params.gameIds);
     }
   }, [route.params?.gameIds])
-
-  const gId = route.params.gameIds
-
-
-  const [ eventDisplay, setEventDisplay ] = useState(null)
-
-  // const scenarioContainer = () => {
-  //     navigation.navigate("Scenarios", {gameIds})
-  //   }
-
-  // const eventContainer = () => {
-  //     navigation.navigate("Events", {gameIds})
-  // }
-
-  const displayedEvents = EVENTS.filter((item) => {
-    return item.gameIds.indexOf(gId) >= 0
-  })
-
-
-
+  
+  
   // Check if a city event is completed or not
+  const [ eventDisplay, setEventDisplay ] = useState(null)
   function eventHandler(enteredEventNum) {
-    const checkEvent = displayedEvents.find((event) => event.id === enteredEventNum)
+    const checkEvent = events.find(event => event.id === enteredEventNum)
   
     if(checkEvent) setEventDisplay('completed')
     else setEventDisplay('not-completed')
   }
-    
-  // const itemContainer = () => {
-  //   navigation.navigate("Items", {gameIds})
-  // }
-
-  // const playerContainer = () => {
-  //   navigation.navigate("Players", {gameIds})
-  // }
 
 
   return (
@@ -63,7 +38,6 @@ const GameOverviewScreen = ({ navigation, route }) => {
       
             <View style={styles.container}>
               <BodyText>Scenarios</BodyText>
-              {/* <SecondaryButton onPress={scenarioContainer}>Scenarios Details</SecondaryButton> */}
             </View>
 
             <View style={styles.container}>
@@ -74,18 +48,11 @@ const GameOverviewScreen = ({ navigation, route }) => {
                 eventDisplay && 
                 <EventCompleted type={ eventDisplay === 'completed' ? 'success' : 'failure'} />
               }
-              
-              {/* <SecondaryButton onPress={eventContainer}>Events Details</SecondaryButton> */}
+
             </View>
 
             <View style={styles.container}>
               <BodyText>Items</BodyText>
-              {/* <SecondaryButton onPress={itemContainer}>Items Details</SecondaryButton> */}
-            </View>
-
-            <View style={styles.container}>
-              <BodyText>Players</BodyText>
-              {/* <SecondaryButton onPress={playerContainer}>Players Details</SecondaryButton> */}
             </View>
 
           </View>
