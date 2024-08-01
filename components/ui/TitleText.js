@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
     title: {
       fontFamily: 'MedievalSharp',
-      fontSize: 28,
+      fontSize: 32,
       color: ColorPalette.titleFont,
       textAlign: 'center',
       marginBottom: 30

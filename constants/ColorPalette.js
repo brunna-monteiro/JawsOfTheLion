@@ -4,7 +4,7 @@ const ColorPalette = {
     primary900: '#092c44',
 
     boxLight: '#f9ecd1',
-    boxDark: '#c4b9a2',
+    boxDark: '#d7ccb2',
 
     header: '#0d4064',
     footer: '#0d4064',

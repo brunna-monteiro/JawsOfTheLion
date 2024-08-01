@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+import { View, ScrollView, KeyboardAvoidingView, TextInput, StyleSheet } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import BodyText from '../components/ui/BodyText'
 import ColorPalette from '../constants/ColorPalette'
@@ -39,49 +39,53 @@ const NewGameScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <BodyText style={styles.text}>Campaign Name</BodyText>
-      <TextInput style={styles.textInput} 
-      value={campaignName} 
-      onChangeText={setCampaignName}
-      maxLength={30}
-      placeholder="Name your campaign" />
-
-      <View style={styles.buttonContainer}>
-      <BodyText style= {styles.text}>Number of Players</BodyText>
-      <Picker style={styles.pickerContainer} selectedValue={numPlayers} onValueChange={handleNumPlayersChange}>
-        {[1, 2, 3, 4].map((num) => (
-          <Picker.Item key={num} label={`${num}`} value={num} />
-        ))}
-      </Picker>
-      </View>
-
-      {players.map((player, index) => (
-        <View key={index}>
-          <BodyText style={styles.text}>Player {index + 1} Name</BodyText>
-          <TextInput 
-            style={styles.textInput}
+    <View style={styles.root}>
+      <ScrollView style={styles.scrollView}>
+        {/* <KeyboardAvoidingView style={styles.root} behavior='padding'> */}
+          <View style={styles.container}>
+            <BodyText style={styles.text}>Campaign</BodyText>
+            <TextInput style={styles.textInput} 
+            value={campaignName} 
+            onChangeText={setCampaignName}
             maxLength={30}
-            placeholder="Player and Character's name"
-            value={player.name}
-            onChangeText={(value) => handlePlayerChange(index, 'name', value)}
-          />
+            placeholder="Name your campaign" />
 
-          <View style={styles.buttonContainer}>
-            <BodyText style={styles.text}>Character</BodyText>
-            <Picker style={styles.pickerContainer}
-              selectedValue={player.character}
-              onValueChange={(value) => handlePlayerChange(index, 'character', value)}
-            >
-              {characters.map((char) => (
-                <Picker.Item key={char} label={char} value={char} />
+            <View style={styles.buttonContainer}>
+            <BodyText style= {styles.text}>Number of Players</BodyText>
+            <Picker style={styles.pickerContainer} selectedValue={numPlayers} onValueChange={handleNumPlayersChange}>
+              {[1, 2, 3, 4].map((num) => (
+                <Picker.Item key={num} label={`${num}`} value={num} />
               ))}
             </Picker>
-          </View>
-        </View>
-      ))}
+            </View>
 
-      <SecondaryButton title="Create Game" onPress={handleSubmit}>Create Game</SecondaryButton>
+            {players.map((player, index) => (
+              <View key={index}>
+                <BodyText style={styles.text}>Player {index + 1}</BodyText>
+                <TextInput 
+                  style={styles.textInput}
+                  maxLength={30}
+                  placeholder="Player's and Character's name"
+                  value={player.name}
+                  onChangeText={(value) => handlePlayerChange(index, 'name', value)}
+                />
+
+                <View style={styles.buttonContainer}>
+                  <BodyText style={styles.text}>Character</BodyText>
+                  <Picker style={styles.pickerContainer}
+                    selectedValue={player.character}
+                    onValueChange={(value) => handlePlayerChange(index, 'character', value)}
+                  >
+                    {characters.map((char) => (
+                      <Picker.Item key={char} label={char} value={char} />))}
+                  </Picker>
+                </View>
+              </View>
+            ))}
+            <SecondaryButton title="Create Game" onPress={handleSubmit}>Create Game</SecondaryButton>
+          </View>
+        {/* </KeyboardAvoidingView> */}
+      </ScrollView>
     </View>
   )
 }
@@ -89,6 +93,16 @@ const NewGameScreen = () => {
 export default NewGameScreen
 
 const styles = StyleSheet.create({
+
+  root: {
+    flex: 1,
+    marginVertical: 30,
+    marginHorizontal: 10,
+  },
+
+  scrollView: {
+    flexGrow: 1
+  },
 
   container: {
     padding: 40,
@@ -104,14 +118,13 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     flexDirection: 'row',
-    marginVertical: 20,
+    marginVertical: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
 
   pickerContainer: {
     backgroundColor: ColorPalette.boxDark,
-    paddingVertical: 5,
     paddingHorizontal: '30%',
     marginRight: 10,
   },
@@ -133,8 +146,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginHorizontal: 10,
 
-    fontSize: 20,
+    fontSize: 14,
     fontWeight: '500',
-    textAlign: 'center'
   },
 })

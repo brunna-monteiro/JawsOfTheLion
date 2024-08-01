@@ -33,13 +33,14 @@ function TabNavigator() {
       tabBarActiveTintColor: ColorPalette.icon,
       tabBarStyle: {backgroundColor: ColorPalette.footer},
       tabBarLabelStyle: {fontSize: 12},
+      // sceneContainerStyle: {backgroundColor: ColorPalette.primary900},
       }}>
 
       <BottomTab.Screen name="GameOverviewScreen" component={GameOverviewScreen} options={
         { title: 'Overview', tabBarIcon: ({ color, size}) => (<MaterialCommunityIcons name='file-document' color={color} size={size}/>)}}/>
 
       <BottomTab.Screen name="Scenarios" component={ScenariosOverview} options={
-        { tabBarIcon: ({ color, size}) => (<FontAwesome6 name='mountain-city' color={color} size={size}/>)}}/>
+        { tabBarIcon: ({ color, size}) => (<FontAwesome6 name='mountain-city' color={color} size={size} />)}}/>
 
       <BottomTab.Screen name="Events" component={EventsOverview} options={
         { tabBarIcon: ({ color, size}) => (<MaterialCommunityIcons name='seal' color={color} size={size}/>)}}/>
@@ -63,7 +64,7 @@ function StackNavigator() {
 
       <Stack.Screen name="OpenScreen" component={OpenScreen} options={{headerShown: false}}/>
 
-      <Stack.Screen name="NewGame" component={NewGameScreen} options={{title: 'New Game'}}/>
+      <Stack.Screen name="NewGame" component={NewGameScreen} options={{title: 'New Game', headerShown: false}}/>
 
       <Stack.Screen name="GameSelection" component={GameSeletionScreen} options={{title: 'Select Game'}}/>
 

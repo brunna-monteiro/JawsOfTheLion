@@ -6,16 +6,15 @@ import ColorPalette from '../constants/ColorPalette'
 const ButtonTile = ({title, player, onPress}) => {
   return (
     <View style={styles.outterContainer}>
-        <Pressable android_ripple={{color: ColorPalette.darkRipple}} 
-        style={({ pressed }) => [
-          styles.button, pressed ? styles.buttonPressed : null,]}
-          onPress={onPress}
-          >
-            <View style={[styles.innerContainer]}>
-                <TitleText>{title}</TitleText>
-                <BodyText>{player}</BodyText>
-            </View>
-        </Pressable>
+      <Pressable android_ripple={{color: ColorPalette.darkRipple}} 
+      style={({ pressed }) => [
+        styles.button, pressed ? styles.buttonPressed : null,]} 
+        onPress={onPress}>
+        <View style={[styles.innerContainer]}>
+          <TitleText>{title}</TitleText>
+          <View>{player}</View>
+        </View>
+      </Pressable>
     </View>
   )
 }
@@ -24,9 +23,8 @@ export default ButtonTile
 
 const styles = StyleSheet.create({
   outterContainer: {
-    flex: 1,
-    margin: 16,
-    height: 200,
+    margin: 10,
+    height: 250,
     borderRadius: 8,
     elevation: 4,
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
@@ -49,10 +47,9 @@ const styles = StyleSheet.create({
 
   innerContainer: {
     flex: 1,
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: ColorPalette.boxLight,
-    justifyContent: 'space-evenly',
+    padding: 20,
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
+
 })

@@ -1,6 +1,7 @@
-import { FlatList, View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import ButtonTile from '../components/ButtonTile'
 import { useGame } from '../components/GameContext'
+import ColorPalette from '../constants/ColorPalette'
 
 const GameSeletionScreen = ({navigation, route}) => {
 
@@ -19,30 +20,18 @@ const GameSeletionScreen = ({navigation, route}) => {
     return <Text>Game not found</Text>
   }
 
-  // return (
-  //   <View>
-  //     <ButtonTile 
-  //     onPress={pressHandler} 
-  //     title={game.campaignName}
-  //     player={game.players.map((player, index) => (
-  //       <View key={index}>
-  //         <Text> - {player.name} - </Text>
-  //       </View>
-  //     ))} />
-  //   </View>
-  // )
-
   return (
-    <View>
-      <Text>Campaign Name: {game.campaignName}</Text>
-      {game.players.map((player, index) => (
-        <View key={index}>
-          <Text>Player {index + 1} Name: {player.name}</Text>
-          <Text>Character: {player.character}</Text>
+    <View style={styles.outterContainer}>
+      <ButtonTile onPress={pressHandler}
+      title={game.campaignName}
+      player={game.players.map((player, index) => (
+        <View style={styles.textContainer} key={index}>
+          <Text style={styles.textLeft}>Player {index + 1}: {player.name} </Text>
+          <Text style={styles.textRight}> {player.character} </Text>
         </View>
-      ))}
+      ))} />
     </View>
-  );
+  )
 
 //   const renderGame = (itemData) => {
 //     function pressHandler() {
@@ -68,3 +57,29 @@ const GameSeletionScreen = ({navigation, route}) => {
 }
 
 export default GameSeletionScreen
+
+const styles = StyleSheet.create({
+  outterContainer: {
+    flex: 1,
+  },
+
+  textContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: ColorPalette.boxDark,
+    marginHorizontal: 30,
+    marginVertical: 5,
+  },
+
+  textLeft: {
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign: 'left'
+  },
+
+  textRight: {
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign: 'right'
+  },
+})
