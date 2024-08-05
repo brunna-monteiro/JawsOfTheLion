@@ -1,4 +1,4 @@
-import { View, StyleSheet, ImageBackground} from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import PrimaryButton from '../components/ui/PrimaryButton'
 import MainText from '../components/ui/MainText'
 
@@ -13,23 +13,18 @@ const OpenScreen = ({navigation}) => {
     
     return (
         <>  
-            {/* <ImageBackground source={require('../assets/images/bg1.jpg')} */}
-                {/* resizeMode='cover'
-                style={styles.root}
-                imageStyle={styles.backgroundImage}> */}
-                <View style={styles.buttonContainer}>
-                    <MainText>GLOOMHVEN</MainText>
-                    <MainText>Jaws of the Lion</MainText>
+            <View style={styles.buttonContainer}>
+                <MainText>GLOOMHVEN</MainText>
+                <MainText>Jaws of the Lion</MainText>
 
-                    <PrimaryButton onPress={pressSelectHandler}>
-                        Select Game
-                    </PrimaryButton>
+                <PrimaryButton onPress={pressSelectHandler}>
+                    Select Game
+                </PrimaryButton>
 
-                    <PrimaryButton onPress={pressNewGameHandler}>
-                        New Game
-                    </PrimaryButton>
-                </View>
-            {/* </ImageBackground> */}
+                <PrimaryButton onPress={pressNewGameHandler}>
+                    New Game
+                </PrimaryButton>
+            </View>
         </>
     )
 }

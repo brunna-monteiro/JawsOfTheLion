@@ -4,9 +4,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 const GameContext = createContext()
 
 export function GameProvider({ children }) {
-  const [gameIds, setGameIds] = useState(null)
-  const [state, setState] = useState({checkEvent: ''})
+  const [ games, setGames ] = useState([])
+  const findGameById = (id) =>
+    games.find(game => game?.id === id)
+
+  const gameIds = Array.isArray(games) && games.map(game => game?.id)
+
+  const [ gameData, setGameData ] = useState({})
+  const [gameId, setGameId] = useState('')
+  const [ state, setState ] = useState({checkEvent: ''})
   const [ events, setEvents ] = useState([])
+  const [playerData, setPlayerData] = useState([])
 
   const toggleEvent = (eventNumber) => {
     const toggledEvent = events.find(event => event.id === eventNumber) || {}
@@ -76,7 +84,7 @@ export function GameProvider({ children }) {
       } catch (error) {
         console.error('Failed to load state:', error)
       }
-    };
+    }
     loadState()
   }, [])
 
@@ -88,18 +96,18 @@ export function GameProvider({ children }) {
       } catch (error) {
         console.error('Failed to save state:', error)
       }
-    };
+    }
     saveState()
   }, [state])
 
   return (
-    <GameContext.Provider value={{ gameIds, setGameIds, state, setState, getAvailableGames, events, setEvents, toggleEvent, updateEventsList }}>
+    <GameContext.Provider value={{games, setGames, gameIds, findGameById, playerData, setPlayerData, gameId, setGameId, gameData, setGameData, state, setState, getAvailableGames, events, setEvents, toggleEvent, updateEventsList }}>
       {children}
     </GameContext.Provider>
-  );
+  )
 }
 
-// Custom hook to use the context
+// useGame is just a custom context hook 
 export function useGame() {
   return useContext(GameContext)
 }

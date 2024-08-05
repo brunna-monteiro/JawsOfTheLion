@@ -1,22 +1,18 @@
 import { View, Text, StyleSheet } from 'react-native'
 import ColorPalette from '../constants/ColorPalette'
 
-const PlayerItem = ({ characterName, playerName, role }) => {
+const PlayerItem = ({ name, character }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.flexbox}>
-        <Text style={styles.propsName}>Charater's Name: </Text>
-        <Text style={styles.textItem}>{characterName}</Text>
-      </View>
 
       <View style={styles.flexbox}>
         <Text style={styles.propsName}>Player's Name: </Text>
-        <Text style={styles.textItem}> {playerName}</Text>
+        <Text style={styles.textItem}> {name}</Text>
       </View>
 
       <View style={styles.flexbox}>
         <Text style={styles.propsName}>Role: </Text>
-        <Text style={styles.textItem}>{role}</Text>
+        <Text style={styles.textItem}>{character}</Text>
       </View>
     </View>
   )

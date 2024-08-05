@@ -7,14 +7,14 @@ import IconButton from '../components/ui/IconButton'
 import { useGame } from '../components/GameContext'
 
 const EventsOverview = ({ route, navigation }) => {
-  const { gameIds, setGameIds, events, setEvents } = useGame()
+  const { gameId, setGameId, events, setEvents } = useGame()
 
   // Set gameIds from route params when component mounts
   useEffect(() => {
-    if (route.params?.gameIds) {
-      setGameIds(route.params.gameIds)
+    if (route.params?.gameId) {
+      setGameId(route.params.gameId)
     }
-  }, [route.params?.gameIds, setGameIds])
+  }, [route.params?.gameId, setGameId])
 
   const [isEditEnabled, setIsEditEnabled] = useState(false)
 
@@ -22,10 +22,10 @@ const EventsOverview = ({ route, navigation }) => {
     const toggledEvent = events.find(event => event.id === eventNumber) || {}
     if (!toggledEvent.id) {
       toggledEvent.id = eventNumber
-      toggledEvent.gameIds = [gameIds]
+      toggledEvent.gameIds = [gameId]
       toggledEvent.choice = null
-    } else if (!toggledEvent.gameIds.find(gameIds)) {
-      toggledEvent.gameIds.push(gameIds)
+    } else if (!toggledEvent.gameIds.includes(gameId)) {
+      toggledEvent.gameIds.push(gameId)
     }
 
     switch (toggledEvent.choice) {
@@ -60,7 +60,7 @@ const EventsOverview = ({ route, navigation }) => {
   }, [events])
 
   // Use the gameIds from the context instead of directly from the route
-  const gId = gameIds
+  const gId = gameId
     
   function renderEvent(itemData) {
     return <EventItem id={itemData.item.id} isEditEnabled={isEditEnabled} onToggle={addEventToList} state={events.find(e => e.id === itemData.item.id)}/>

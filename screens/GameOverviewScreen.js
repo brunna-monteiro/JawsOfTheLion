@@ -9,15 +9,15 @@ import { useGame } from '../components/GameContext'
 
 const GameOverviewScreen = ({ route }) => {
 
-  const { gameIds, setGameIds, events, setEvents, state} = useGame()
-  const { gameId } = route.params
-  const game = state.games.find(game => game.id === gameId)
+  const { gameId, setGameId, events, setEvents, state} = useGame()
+  // const { gameId } = route.params
+  // const game = gameId.games.find(game => game.id === gameId)
 
   useEffect(() => {
-    if (route.params?.gameIds) {
-      setGameIds(route.params.gameIds);
+    if (route.params?.gameId) {
+      setGameId(route.params.gameId);
     }
-  }, [route.params?.gameIds])
+  }, [route.params?.gameId])
   
   
   // Check if a city event is completed or not

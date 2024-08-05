@@ -6,15 +6,17 @@ import ColorPalette from '../constants/ColorPalette'
 import SecondaryButton from '../components/ui/SecondaryButton'
 import { useGame } from '../components/GameContext'
 import { useNavigation } from '@react-navigation/native'
+import { randomId } from '../utils/randomId'
 
 const NewGameScreen = () => {
-  const [campaignName, setCampaignName] = useState('');
+  const { games, setGames } = useGame()
+
+  const [campaignName, setCampaignName] = useState('')
   const [numPlayers, setNumPlayers] = useState(1)
   const [players, setPlayers] = useState([{ name: '', character: '' }])
-  const { state, setState } = useGame()
   const navigation = useNavigation()
 
-  const characters = ['Demolitionist', 'Voidwarden', 'Hatchet', 'Red Guard']
+  const characters = ['Character', 'Demolitionist', 'Voidwarden', 'Hatchet', 'Red Guard']
 
   const handleNumPlayersChange = (value) => {
     setNumPlayers(value)
@@ -28,14 +30,18 @@ const NewGameScreen = () => {
   }
 
   const handleSubmit = () => {
-    const newGameId = `game_${Date.now()}`
+    const newGameId = randomId()
+    console.log(newGameId)
     const newGame = {
       id: newGameId,
       campaignName,
       players
     }
-    setState({ ...state, games: [...(state.games || []), newGame] })
-    navigation.navigate("GameSelection", { gameId: newGameId })
+
+    setGames([...games, newGame])
+    //debbuging
+    console.log('Navigating to GameSeletionScreen with newGameId:', newGameId)
+    navigation.navigate('GameSelection', { newGameId })
   }
 
   return (
@@ -47,7 +53,7 @@ const NewGameScreen = () => {
             <TextInput style={styles.textInput} 
             value={campaignName} 
             onChangeText={setCampaignName}
-            maxLength={30}
+            maxLength={20}
             placeholder="Name your campaign" />
 
             <View style={styles.buttonContainer}>
