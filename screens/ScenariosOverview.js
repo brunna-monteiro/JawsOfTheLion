@@ -1,6 +1,6 @@
 import { View, FlatList, StyleSheet } from 'react-native'
 import { useEffect } from 'react'
-import { useGame } from '../components/GameContext'
+import { useGame } from '../store/context/GameContext'
 import { SCENARIOS } from '../data/data'
 import ColorPalette from '../constants/ColorPalette'
 import ScenarioItem from '../components/ScenarioItem'
@@ -26,7 +26,7 @@ const ScenariosOverview = ({ route }) => {
     goal={itemData.item.goal}/>
   }
   return (
-    <>
+    <View style={styles.rootContainer}>
       <View style={styles.outterContainer}>
         <View style={styles.container}>
           <FlatList 
@@ -35,13 +35,18 @@ const ScenariosOverview = ({ route }) => {
           renderItem={renderScenario}/>
         </View>
       </View>
-    </>
+    </View>
   )
 }
 
 export default ScenariosOverview
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    backgroundColor: ColorPalette.primary900,
+  },
+
   outterContainer: {
     flex: 1,
     margin: 16,

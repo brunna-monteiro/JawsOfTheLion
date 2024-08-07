@@ -1,23 +1,18 @@
 import { View, Text, StyleSheet } from 'react-native'
-import { useEffect } from 'react'
 import ButtonTile from '../components/ButtonTile'
-import { useGame } from '../components/GameContext'
+import { useGame } from '../store/context/GameContext'
 import ColorPalette from '../constants/ColorPalette'
 
 const GameSeletionScreen = ({navigation}) => {
 
-  const { gameData, setGameData, findGameById, games } = useGame()
+  const { setGameData, findGameById, games } = useGame()
 
-  console.log(games)
   function pressHandler(id) {
     const gameById = findGameById(id)
     setGameData(gameById)
     navigation.navigate("TabNavigator", { 
       screen: "GameOverviewScreen",
-      params: {
-        gameId: id
-      }},
-    )}
+    })}
 
   return (
     <View style={styles.outterContainer}>

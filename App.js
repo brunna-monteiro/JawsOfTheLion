@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { GameProvider } from './components/GameContext'
+import { GameProvider } from './store/context/GameContext'
 
 import OpenScreen from './screens/OpenScreen'
 import NewGameScreen from './screens/NewGameScreen'
@@ -33,7 +33,6 @@ function TabNavigator() {
       tabBarActiveTintColor: ColorPalette.icon,
       tabBarStyle: {backgroundColor: ColorPalette.footer},
       tabBarLabelStyle: {fontSize: 12},
-      // sceneContainerStyle: {backgroundColor: ColorPalette.primary900},
       }}>
 
       <BottomTab.Screen name="GameOverviewScreen" component={GameOverviewScreen} options={

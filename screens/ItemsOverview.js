@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useGame } from '../components/GameContext'
-import { FlatList } from 'react-native'
+import { useGame } from '../store/context/GameContext'
+import { FlatList, View, StyleSheet } from 'react-native'
+import ColorPalette from '../constants/ColorPalette'
 import { ITEMS } from '../data/data'
 import ItemItem from '../components/ItemItem'
 
@@ -39,11 +40,20 @@ const ItemsOverview = ({ route }) => {
       <ItemItem {...itemProps}/>
   )}
   return (
-        <FlatList 
-        data={displayedItems} 
-        keyExtractor={(item) => item.id} 
-        renderItem={renderItem}/>
+    <View style={styles.rootContainer}>
+      <FlatList 
+      data={displayedItems} 
+      keyExtractor={(item) => item.id} 
+      renderItem={renderItem}/>
+    </View>
   )
 }
 
 export default ItemsOverview
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    backgroundColor: ColorPalette.primary900,
+  },
+})

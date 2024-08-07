@@ -1,37 +1,20 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { useState, useEffect } from 'react'
 import ColorPalette from '../../constants/ColorPalette'
 
 const EventItem = ({ id, isEditEnabled, onToggle, state }) => {
-  const renderText = () => {
-    if (!state || !state.choice) return id
-    return id + state.choice
-  }
-
-  const [text, setText] = useState(renderText())
-  const [bgColor, setBgColor] = useState(ColorPalette.notCompleted)
+  const text = state.choice ? `${state.id}${state.choice}` : String(state.id)
 
   const colors = {
-    [id]: ColorPalette.notCompleted,
-    [id + 'A']: ColorPalette.choiceA,
-    [id + 'B']: ColorPalette.choiceB
+    default: ColorPalette.notCompleted,
+    A: ColorPalette.choiceA,
+    B: ColorPalette.choiceB
   }
 
-  useEffect(() => {
-    setBgColor(colors[text])
-  }, [text])
-
-  useEffect(() => {
-    setText(renderText())
-  })
-
-  const tapHandler = () => {
-    onToggle(id)
-  }
+  const color = state.choice ? colors[state.choice] : colors.default
 
   return (
-    <View style={[styles.outterContainer, { backgroundColor: bgColor }]}>
-      <TouchableOpacity onPress={tapHandler} disabled={!isEditEnabled}>
+    <View style={[styles.outterContainer, { backgroundColor: color }]}>
+      <TouchableOpacity onPress={() => onToggle(id)} disabled={!isEditEnabled}>
         <View style={styles.container}>
           <Text style={styles.text}>{text}</Text>
         </View>

@@ -4,7 +4,7 @@ import ColorPalette from '../constants/ColorPalette'
 import BodyText from '../components/ui/BodyText'
 import EventInput from '../components/event/EventInput'
 import EventCompleted from '../components/event/EventCompleted'
-import { useGame } from '../components/GameContext'
+import { useGame } from '../store/context/GameContext'
 
 
 const GameOverviewScreen = ({ route }) => {
@@ -67,6 +67,7 @@ export default GameOverviewScreen
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: ColorPalette.primary900
   },
 
   scrollView: {

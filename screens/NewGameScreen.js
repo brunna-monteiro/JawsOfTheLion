@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker'
 import BodyText from '../components/ui/BodyText'
 import ColorPalette from '../constants/ColorPalette'
 import SecondaryButton from '../components/ui/SecondaryButton'
-import { useGame } from '../components/GameContext'
+import { useGame } from '../store/context/GameContext'
 import { useNavigation } from '@react-navigation/native'
 import { randomId } from '../utils/randomId'
 
@@ -31,11 +31,17 @@ const NewGameScreen = () => {
 
   const handleSubmit = () => {
     const newGameId = randomId()
-    console.log(newGameId)
+    const eventsSeed = Array.from({ length: 100 }, (_value, index) => index+1);
+    const events = eventsSeed.map(event => ({
+        id: event,
+        choice: null
+      })
+    )
     const newGame = {
       id: newGameId,
       campaignName,
-      players
+      players,
+      events
     }
 
     setGames([...games, newGame])

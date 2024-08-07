@@ -1,69 +1,22 @@
 import { View, FlatList, StyleSheet } from 'react-native'
-import { useLayoutEffect, useState, useEffect } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import ColorPalette from '../constants/ColorPalette'
 import { EVENTS } from '../data/data'
 import EventItem from '../components/event/EventItem'
 import IconButton from '../components/ui/IconButton'
-import { useGame } from '../components/GameContext'
+import { useGame } from '../store/context/GameContext'
 
-const EventsOverview = ({ route, navigation }) => {
-  const { gameId, setGameId, events, setEvents } = useGame()
-
-  // Set gameIds from route params when component mounts
-  useEffect(() => {
-    if (route.params?.gameId) {
-      setGameId(route.params.gameId)
-    }
-  }, [route.params?.gameId, setGameId])
+const EventsOverview = ({ navigation }) => {
+  const { events, updateEventsList, currentEvents, updateEvent } = useGame()
 
   const [isEditEnabled, setIsEditEnabled] = useState(false)
-
-  const toggleEvent = (eventNumber) => {
-    const toggledEvent = events.find(event => event.id === eventNumber) || {}
-    if (!toggledEvent.id) {
-      toggledEvent.id = eventNumber
-      toggledEvent.gameIds = [gameId]
-      toggledEvent.choice = null
-    } else if (!toggledEvent.gameIds.includes(gameId)) {
-      toggledEvent.gameIds.push(gameId)
-    }
-
-    switch (toggledEvent.choice) {
-      case null:
-        toggledEvent.choice = 'A'
-        break
-      case 'A':
-        toggledEvent.choice = 'B'
-        break
-      case 'B':
-        toggledEvent.choice = null
-        break
-      default:
-        throw new Error('Invalid case')
-    }
-
-    return toggledEvent
-  }
-  const addEventToList = (eventNumber) => {
-    setEvents((currentState => {
-      const event = toggleEvent(eventNumber)
-      const editedEvents = currentState.filter(e => e.id !== eventNumber)
-      return [
-        ...editedEvents,
-        event
-      ]
-    }))
-  }
-
-  useEffect(() => {
-    console.log(events)
-  }, [events])
-
-  // Use the gameIds from the context instead of directly from the route
-  const gId = gameId
-    
+  
   function renderEvent(itemData) {
-    return <EventItem id={itemData.item.id} isEditEnabled={isEditEnabled} onToggle={addEventToList} state={events.find(e => e.id === itemData.item.id)}/>
+    return <EventItem 
+      id={itemData.item.id} 
+      isEditEnabled={isEditEnabled}
+      onToggle={() => updateEvent(itemData.item.id)} 
+      state={itemData.item}/>
     }
   
   function editButtonHandler() {
@@ -72,7 +25,6 @@ const EventsOverview = ({ route, navigation }) => {
     // somente !isEditEnabled para a função, o estado considerado
     // pode ter mudado quando a função efetivamente executar.
     setIsEditEnabled(currentState => !currentState)
-    // setState({ ...state, newValue: 'Updated!' })
   }
 
   useLayoutEffect(() => {
@@ -89,17 +41,17 @@ const EventsOverview = ({ route, navigation }) => {
   }, [navigation, editButtonHandler])
 
   return (
-    <>
+    <View style={styles.rootContainer}>
       <View style={styles.outterContainer}>
         <View style={styles.container}>
           <FlatList 
-          data={EVENTS} 
+          data={currentEvents} 
           keyExtractor={(item) => item.id} 
           renderItem={renderEvent}
           numColumns={5}/>
         </View>
       </View>
-    </> 
+    </View> 
 )
 }
 
@@ -107,19 +59,24 @@ export default EventsOverview
 
 
 const styles = StyleSheet.create({
-    outterContainer: {
-      flex: 1,
-      margin: 16,
-      borderRadius: 8,
-    },
-  
-    container: {
-      flex: 1,
-      backgroundColor: ColorPalette.boxLight,
-      alignItems: 'center',
-  
-      borderWidth: 1,
-      borderRadius: 8,
-      borderColor: ColorPalette.OSShadow
-    },
-  })
+  rootContainer: {
+    flex: 1,
+    backgroundColor: ColorPalette.primary900,
+  },
+
+  outterContainer: {
+    flex: 1,
+    margin: 16,
+    borderRadius: 8,
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: ColorPalette.boxLight,
+    alignItems: 'center',
+
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: ColorPalette.OSShadow
+  },
+})
